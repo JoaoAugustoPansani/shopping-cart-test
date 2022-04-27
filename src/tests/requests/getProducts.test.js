@@ -1,13 +1,24 @@
 const supertest = require("supertest");
-const app = require('../../server');
-const products = require('../../models/Product');
+const Products = require("../../models/Products.js");
+const app = require('../../server.js');
 const request = supertest(app);
 
-//Testing the getUser endpoint
-it("gets the products list endpoint", async done => {
-    const response = await request.get('/api/products');
-    expect(response.status).toBe(200);
-    expect(response.body).toBe(products);
+//Recurso
+describe('ProductsController', () => {
+    //Metodo
+    describe('GET /api/products', () => {
+        it('should read the products list from api', async () => {
+            //SETUP
+            const products = await Products.findAll()
+            
+            //EXERCISE
+            const response = await request.get('/api/products');
 
-    done();
+            //VERIFY
+            expect(response.status).toBe(200);
+            expect(response.body).toEqual(products);
+        });
+    });
 });
+
+module.exports = { request }
