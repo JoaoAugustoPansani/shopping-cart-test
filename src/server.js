@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./database/database');
-const port = process.env.PORT || 5500;
+const port = 3300;
 const app = express();
 
 sequelize.sync({force: true}).then(() => {console.log('DB is ready')});
@@ -18,4 +18,6 @@ app.use((req, res) => {
 //Server port
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
-})
+});
+
+module.exports = app;
