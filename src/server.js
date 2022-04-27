@@ -3,7 +3,7 @@ const sequelize = require('./database/database');
 const port = 3300;
 const app = express();
 
-sequelize.sync({force: true}).then(() => {console.log('DB is ready')});
+sequelize.sync({force: false})
 
 app.use(express.json());
 
