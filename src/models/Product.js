@@ -1,22 +1,19 @@
-const { Model, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../database/database');
 
-class Product extends Model {};
-
-Product.init({
+const Product = sequelize.define('available_products', {
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     price: {
-        type: DataTypes.NUMBER
+        type: DataTypes.NUMBER,
+        allowNull: false
     },
     available_units: {
-        type: DataTypes.NUMBER
+        type: DataTypes.NUMBER,
+        allowNull: false
     }
-}, {
-    sequelize,
-    modelName: 'products_available',
-    timestamps: false
-});
+})
 
 module.exports = Product;
