@@ -9,20 +9,30 @@ describe('ProductsController', () => {
     describe('GET /api/products', () => {
         it('should read the products list from api', async () => {
             //SETUP
-            const products = await Products.findAll();
+            await Products.create({
+                id: 56,
+                name: "Banana",
+                price: 10,
+                available_units: 10
+            });
 
-            try {
-                //EXERCISE
-                const response = await request.get('/api/products');
+            //EXERCISE
+            const response = await request.get('/api/products');
 
-                //VERIFY
-                expect(response.status).toBe(200);
-                expect(response.body).toEqual(products);
-            } catch(err) {
-                console.log(`Error ${err}`)
-            }
+            //VERIFY
+            expect(response.status).toBe(200);
+            expect(response.body).toEqual([{
+                id: 56,
+                name: "Banana",
+                price: 10,
+                available_units: 10
+            }]);
         });
     });
+});
+
+afterAll(async () => {
+    await Products.destroy({ where: { id: 56 } });
 });
 
 module.exports = { request };
