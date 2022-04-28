@@ -3,20 +3,24 @@ const Products = require("../../models/Products.js");
 const app = require('../../server.js');
 const request = supertest(app);
 
-//Recurso
+//RESOURCES
 describe('ProductsController', () => {
-    //Metodo
+    //METHODS
     describe('GET /api/products', () => {
         it('should read the products list from api', async () => {
             //SETUP
-            const products = await Products.findAll()
-            
-            //EXERCISE
-            const response = await request.get('/api/products');
+            const products = await Products.findAll();
 
-            //VERIFY
-            expect(response.status).toBe(200);
-            expect(response.body).toEqual(products);
+            try {
+                //EXERCISE
+                const response = await request.get('/api/products');
+
+                //VERIFY
+                expect(response.status).toBe(200);
+                expect(response.body).toEqual(products);
+            } catch(err) {
+                console.log(`Error ${err}`)
+            }
         });
     });
 });
