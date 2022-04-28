@@ -3,9 +3,9 @@ const Products = require("../../models/Products.js");
 const app = require('../../server.js');
 const request = supertest(app);
 
-//Recurso
+//RESOURCES
 describe('ProductsController', () => {
-    //Metodo
+    //METHOD
     describe('GET /api/products', () => {
         it('should read the products list from api', async () => {
             //SETUP
