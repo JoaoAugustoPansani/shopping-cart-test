@@ -21,4 +21,4 @@ describe('ProductsController', () => {
     });
 });
 
-module.exports = { request }
+module.exports = { request };
