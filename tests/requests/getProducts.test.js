@@ -2,6 +2,11 @@ const request = require('../support/request');
 const Product = require("../../src/models/Product");
 
 describe('ProductsController', () => {
+    afterEach(async () => {
+        await Product.destroy({ where: {} });
+    });
+    beforeAll(() => require('../../database/database').sync({ force: true }))
+
     describe('GET /api/products', () => {
         describe('when there are products', () => {
             it('should read the products list from api', async () => {
@@ -32,8 +37,4 @@ describe('ProductsController', () => {
             });
         });
     });
-});
-
-afterEach(async () => {
-    await Product.destroy({ where: {} });
 });

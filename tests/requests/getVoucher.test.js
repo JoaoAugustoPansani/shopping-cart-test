@@ -2,6 +2,11 @@ const request = require('../support/request');
 const Voucher = require('../../src/models/Voucher');
 
 describe('VoucherController', () => {
+    afterEach(async () => {
+        await Voucher.destroy({ where: {} });
+    });
+    beforeAll(() => require('../../database/database').sync({ force: true }))
+
     describe('GET /api/vouchers', () => {
         describe('when vouchers are populated', () => {
             it('should get the vouchers list', async () => {
@@ -34,8 +39,5 @@ describe('VoucherController', () => {
             });
         });
     });
-});
 
-afterEach(async () => {
-    await Voucher.destroy({ where: {} });
 });
