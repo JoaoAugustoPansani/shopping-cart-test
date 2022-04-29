@@ -37,5 +37,3 @@ describe('ProductsController', () => {
 afterEach(async () => {
     await Product.destroy({ where: {} });
 });
-
-module.exports = { request };
