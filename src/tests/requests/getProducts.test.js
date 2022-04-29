@@ -1,5 +1,5 @@
 const supertest = require("supertest");
-const Products = require("../../models/Products.js");
+const Product = require("../../models/Product.js");
 const app = require('../../server.js');
 const request = supertest(app);
 
@@ -7,32 +7,50 @@ const request = supertest(app);
 describe('ProductsController', () => {
     //METHODS
     describe('GET /api/products', () => {
-        it('should read the products list from api', async () => {
-            //SETUP
-            await Products.create({
-                id: 56,
-                name: "Banana",
-                price: 10,
-                available_units: 10
+        describe('when there are products', () => {
+            it('should read the products list from api', async () => {
+                //SETUP
+                await Product.create({
+                    id: 56,
+                    name: "Banana",
+                    price: 10,
+                    available_units: 10
+                });
+
+                //EXERCISE
+                const response = await request.get('/api/products');
+
+                //VERIFY
+                expect(response.status).toBe(200);
+                expect(response.body).toEqual([{
+                    id: 56,
+                    name: "Banana",
+                    price: 10,
+                    available_units: 10
+                }]);
             });
+        });
+        describe('when there are no products', () => {
+            it('should read the products list and return an empty array', async () => {
+                //METHOD
+                await Product.findAll();
 
-            //EXERCISE
-            const response = await request.get('/api/products');
+                //EXERCISE 
+                const response = await request.get('/api/products');
 
-            //VERIFY
-            expect(response.status).toBe(200);
-            expect(response.body).toEqual([{
-                id: 56,
-                name: "Banana",
-                price: 10,
-                available_units: 10
-            }]);
+                //VERIFY
+                expect(response.status).toBe(200);
+                expect(response.body).toEqual([]);
+            });
         });
     });
 });
 
-afterAll(async () => {
-    await Products.destroy({ where: { id: 56 } });
+afterEach(async () => {
+    const product = await Product.findByPk(56);
+    if (product) {
+        product.destroy();
+    }
 });
 
 module.exports = { request };
