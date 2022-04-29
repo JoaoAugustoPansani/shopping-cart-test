@@ -7,15 +7,12 @@ sequelize.sync({force: false})
 
 app.use(express.json());
 
-//PRODUCT API ENDPOINTS
 app.use('/api/products', require('./routes/productRoutes'));
 
-//Default response for any other request 
 app.use((req, res) => {
     res.status(404);
 });
 
-//Server port
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 });
