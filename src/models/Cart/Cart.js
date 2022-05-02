@@ -5,12 +5,6 @@ const CartItem = require("./CartItem");
 const Cart = sequelize.define(
   "cart",
   {
-    cartId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-    },
     id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,11 +13,7 @@ const Cart = sequelize.define(
     },
     itemsId: {
       type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "cart_item",
-        key: "id",
-      },
+      allowNull: true
     },
     voucher_code: {
       type: DataTypes.STRING,
@@ -43,7 +33,11 @@ const Cart = sequelize.define(
   }
 );
 
-Cart.hasMany(CartItem);
-CartItem.belongsTo(Cart);
+Cart.hasMany(CartItem, {
+  as: 'cart_items',
+  foreignKey: 'itemId',
+  constraints: false
+});
+CartItem.belongsTo(Cart)
 
 module.exports = Cart;
