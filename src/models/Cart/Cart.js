@@ -27,7 +27,7 @@ const Cart = sequelize.define(
 
 Cart.hasMany(CartItem, {
   as: 'cart_items',
-  foreignKey: 'itemId',
+  foreignKey: 'id',
   constraints: false
 });
 CartItem.belongsTo(Cart)
