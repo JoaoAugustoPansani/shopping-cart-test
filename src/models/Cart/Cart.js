@@ -11,10 +11,6 @@ const Cart = sequelize.define(
       primaryKey: true,
       autoIncrement: false,
     },
-    itemsId: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
     voucher_code: {
       type: DataTypes.STRING,
       allowNull: true,

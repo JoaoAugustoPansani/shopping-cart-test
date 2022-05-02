@@ -9,10 +9,6 @@ module.exports = {
         primaryKey: true,
         autoIncrement: false,
       },
-      itemsId: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
       voucher_code: {
         type: Sequelize.STRING,
         allowNull: true,
