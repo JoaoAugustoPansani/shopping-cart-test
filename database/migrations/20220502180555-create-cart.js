@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         autoIncrement: false,
       },
-      subtotal: {
+      subtotal_in_cents: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      total: {
+      total_in_cents: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },

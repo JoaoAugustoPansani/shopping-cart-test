@@ -11,11 +11,11 @@ const Cart = sequelize.define(
       primaryKey: true,
       autoIncrement: false,
     },
-    subtotal: {
+    subtotal_in_cents: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    total: {
+    total_in_cents: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
