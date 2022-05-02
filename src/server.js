@@ -11,6 +11,8 @@ app.use("/api/products", require("./routes/productRoutes"));
 
 app.use("/api/vouchers", require("./routes/voucherRoutes"));
 
+app.use("/api/cart", require("./routes/cartRoutes"));
+
 app.use((req, res) => {
   res.status(404);
 });
