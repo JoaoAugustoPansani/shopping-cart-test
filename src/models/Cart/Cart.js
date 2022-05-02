@@ -9,7 +9,11 @@ const Cart = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: false,
+      autoIncrement: true,
+    },
+    user_session_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     subtotal_in_cents: {
       type: DataTypes.INTEGER,

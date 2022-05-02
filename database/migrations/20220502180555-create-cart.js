@@ -7,6 +7,10 @@ module.exports = {
         primaryKey: true,
         autoIncrement: false,
       },
+      user_session_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       subtotal_in_cents: {
         type: Sequelize.INTEGER,
         allowNull: true,
