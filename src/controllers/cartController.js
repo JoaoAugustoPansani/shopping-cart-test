@@ -9,7 +9,6 @@ const generateCartForUser = async (req, res) => {
     defaults: {
       subtotal: 0,
       total: 0,
-      items: [],
     },
   });
 
