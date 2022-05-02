@@ -29,6 +29,8 @@ const Product = sequelize.define(
   }
 );
 
-Product.belongsTo(CartItem);
+Product.associate = (models) => {
+  Product.belongsTo(models.cart_items);
+};
 
 module.exports = Product;
