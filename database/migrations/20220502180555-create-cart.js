@@ -4,31 +4,31 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable("carts", {
       id: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true,
         autoIncrement: false,
       },
       itemsId: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true
       },
       voucher_code: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
       },
       subtotal: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
       total: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
     });
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable("carts")
+    await queryInterface.dropTable("carts");
   }
 };
