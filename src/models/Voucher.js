@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../database/database");
 
-const Product = sequelize.define(
-  "products",
+const Voucher = sequelize.define(
+  "vouchers",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,15 +10,19 @@ const Product = sequelize.define(
       allowNull: false,
       autoIncrement: true,
     },
-    name: {
+    code: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    price_in_cents: {
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    amount: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    available_units: {
+    min_value: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -28,4 +32,4 @@ const Product = sequelize.define(
   }
 );
 
-module.exports = Product;
+module.exports = Voucher;
