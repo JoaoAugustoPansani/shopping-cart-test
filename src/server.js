@@ -1,21 +1,22 @@
-const express = require('express');
-const sequelize = require('./database/database');
+const express = require("express");
+const sequelize = require("../database/database");
 const port = process.env.PORT || 5500;
 const app = express();
 
-sequelize.sync({force: true}).then(() => {console.log('DB is ready')});
+sequelize.sync({ force: false });
 
 app.use(express.json());
 
-//PRODUCT API ENDPOINTS
-app.use('/api/products', require('./routes/productRoutes'));
+app.use("/api/products", require("./routes/productRoutes"));
 
-//Default response for any other request 
+app.use("/api/vouchers", require("./routes/voucherRoutes"));
+
 app.use((req, res) => {
-    res.status(404);
+  res.status(404);
 });
 
-//Server port
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
-})
+  console.log(`Server running on port ${port}`);
+});
+
+module.exports = app;
