@@ -1,10 +1,10 @@
-const Voucher = require('../models/Voucher');
+const Voucher = require("../models/Voucher");
 
 const getVouchers = async (req, res) => {
-    const vouchers = await Voucher.findAll();
-    res.send(vouchers);
-}; 
+  const vouchers = await Voucher.findAll();
+  res.send(vouchers);
+};
 
 module.exports = {
-    getVouchers
-}
+  getVouchers,
+};
