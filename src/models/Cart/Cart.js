@@ -11,10 +11,6 @@ const Cart = sequelize.define(
       primaryKey: true,
       autoIncrement: false,
     },
-    voucher_code: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     subtotal: {
       type: DataTypes.INTEGER,
       allowNull: true,
