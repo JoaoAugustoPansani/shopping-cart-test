@@ -3,7 +3,7 @@ const sequelize = require("../../../database/database");
 const CartItem = require("./CartItem");
 
 const Cart = sequelize.define(
-  "cart",
+  "carts",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,8 +28,6 @@ const Cart = sequelize.define(
 Cart.hasMany(CartItem, {
   as: 'cart_items',
   foreignKey: 'id',
-  constraints: false
 });
-CartItem.belongsTo(Cart)
 
 module.exports = Cart;

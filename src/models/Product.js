@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../database/database");
+const CartItem = require("./Cart/CartItem");
 
 const Product = sequelize.define(
   "products",
@@ -27,5 +28,7 @@ const Product = sequelize.define(
     timestamps: false,
   }
 );
+
+Product.belongsTo(CartItem);
 
 module.exports = Product;

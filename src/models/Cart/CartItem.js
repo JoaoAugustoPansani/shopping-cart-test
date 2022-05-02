@@ -1,22 +1,16 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../../database/database");
+const Product = require('../Product');
+const Cart = require('./Cart')
 
 const CartItem = sequelize.define(
-    "cart_item",
+    "cart_items",
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: true,
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        price: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
         },
         quantity: {
             type: DataTypes.INTEGER,
@@ -31,5 +25,12 @@ const CartItem = sequelize.define(
         timestamps: false,
     }
 );
+
+CartItem.hasOne(Product, {
+    as: 'products',
+    foreignKey: 'id',
+});
+
+CartItem.belongsTo(Cart);
 
 module.exports = CartItem;
