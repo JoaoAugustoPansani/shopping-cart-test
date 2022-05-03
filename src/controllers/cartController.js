@@ -4,7 +4,7 @@ const generateCartForUser = async (req, res) => {
   const userSessionId = req.body.user_session_id;
   const generatedCart = await Cart.findOrCreate({
     where: {
-      id: userSessionId,
+      user_session_id: userSessionId,
     },
     defaults: {
       subtotal: 0,
