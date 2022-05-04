@@ -16,7 +16,7 @@ const CartItem = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    amount: {
+    amount_in_cents: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
