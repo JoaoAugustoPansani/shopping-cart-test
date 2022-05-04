@@ -19,6 +19,10 @@ const Cart = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    shipping_in_cents: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     total_in_cents: {
       type: DataTypes.INTEGER,
       allowNull: true,
