@@ -11,6 +11,9 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      index: {
+
+      },
       subtotal_in_cents: {
         type: Sequelize.INTEGER,
         allowNull: true,
@@ -20,8 +23,12 @@ module.exports = {
         allowNull: true,
       },
     });
-  },
 
+    await queryInterface.addIndex("carts", {
+      fields: "user_session_id",
+      unique: true
+    });
+  },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("carts");
   },
