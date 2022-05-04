@@ -8,10 +8,14 @@ module.exports = {
         autoIncrement: true,
       },
       user_session_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       subtotal_in_cents: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      shipping_in_cents: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
@@ -21,12 +25,13 @@ module.exports = {
       },
     });
 
-    await queryInterface.addIndex("carts", {
-      fields: "user_session_id",
-      unique: true,
+    await queryInterface.addIndex("carts", ['user_session_id'], {
+      indicesType: 'COLUMNSTORE',
+      unique: false
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("carts");
+    await queryInterface.removeIndex('carts', ['user_session_id']);
   },
 };
