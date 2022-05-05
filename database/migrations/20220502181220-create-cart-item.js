@@ -7,6 +7,10 @@ module.exports = {
         autoIncrement: true,
         allowNull: true,
       },
+      cart_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
