@@ -31,6 +31,7 @@ describe("CartController", () => {
         const response = await request.post("/api/cart").send(userSessionId);
 
         expect(response.status).toBe(400);
+        expect(response.body.message).toEqual("The session id token can't be null.")
       });
     });
   });
