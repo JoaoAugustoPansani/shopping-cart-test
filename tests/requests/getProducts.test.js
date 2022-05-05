@@ -5,7 +5,7 @@ describe("ProductsController", () => {
   afterEach(async () => {
     await Product.destroy({ where: {} });
   });
-  beforeAll(() => require("../../database/database").sync({ force: true }));
+  beforeAll(() => require("../../database/database").sync({ force: false }));
 
   describe("GET /api/products", () => {
     describe("when there are products", () => {

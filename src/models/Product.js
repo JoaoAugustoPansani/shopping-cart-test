@@ -28,4 +28,8 @@ const Product = sequelize.define(
   }
 );
 
+Product.associate = (models) => {
+  Product.belongsTo(models.cart_items);
+};
+
 module.exports = Product;
