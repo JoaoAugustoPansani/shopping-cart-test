@@ -8,7 +8,11 @@ module.exports = {
         allowNull: true,
       },
       cart_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      product_id: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       quantity: {
