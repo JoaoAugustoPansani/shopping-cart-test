@@ -1,0 +1,46 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        
+    services: 
+      mysql: 
+        image: mysql:5.7
+        env: 
+          MYSQL_ROOT_PASSWORD: pansani123
+        ports: 
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm test
+      run: |
+        cp ./config.json.example config.json
+        npm install
+        npx prettier --write
+        sudo service mysql start
+        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppansani123 < etc/original.sql
+        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppansani123 -e "SHOW DATABASES"
+        #This command adds the proper mysql port to the config file
+        node scripts/ci ${{ job.services.mysql.ports['3306'] }}
+        npm run setup
+        npm test
+      env:
+        CI: true
