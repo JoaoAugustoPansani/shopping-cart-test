@@ -9,11 +9,11 @@ module.exports = {
       },
       cart_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       product_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       quantity: {
         type: Sequelize.INTEGER,

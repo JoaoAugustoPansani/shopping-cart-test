@@ -1,9 +1,7 @@
+require("dotenv").config();
 const express = require("express");
-const sequelize = require("../database/database");
 const port = process.env.PORT || 5500;
 const app = express();
-
-sequelize.sync({ force: false });
 
 app.use(express.json());
 

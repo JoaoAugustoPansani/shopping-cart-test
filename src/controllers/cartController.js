@@ -6,7 +6,7 @@ const generateCartForUser = async (req, res) => {
   if (userSessionId === null) {
     res.status(400);
     res.send({
-      message: "The session id token can't be null."
+      message: "The session id token can't be null.",
     });
   } else {
     const generatedCart = await Cart.findOrCreate({
