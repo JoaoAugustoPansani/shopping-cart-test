@@ -12,7 +12,7 @@ on:
 
 env: 
   NODE_ENV: test
-  DABASE_URL: mysql://root:root@localhost:3306
+  DABASE_URL: mysql://user:pass@localhost:3306
 
 jobs: 
   test:
@@ -22,8 +22,8 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root
+          MYSQL_USER: user
+          MYSQL_PASSWORD: pass
           MYSQL_DATABASE: shopping-cart
         ports:
           - 3306:3306
