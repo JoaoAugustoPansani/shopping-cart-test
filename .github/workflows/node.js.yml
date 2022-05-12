@@ -1,40 +1,45 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Node CI
 
-on: [push]
+on: 
+  push:
+  pull_request:
+    branches: 
+      - develop
+      - main
 
-jobs:
-  build:
+env: 
+  DABASE_URL: mysql://root:root@localhost:3306/shopping-cart
+
+jobs: 
+  test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     services:
       mysql:
         image: mysql:5.7
         env:
-          DB_DATABASE: test_db
-          DB_USER: root
-          DB_PASSWORD: root
+          DATABASE_URL: mysql://root:root@localhost:3306/shopping-cart
         ports:
-          - 3306
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js CI${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
+    strategy:
+      matrix: 
+        node-version: [12.x, 14.x, 16.x]
+
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Use Node ${{matrix.node-version}}
+      uses: actions/setup-node@v3
+      with:
           node-version: ${{ matrix.node-version }}
-      - name: npm test
-        run: |
-          npm install
-          npx prettier --write
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{env.DB_DATABASE}}' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
-          npm test
+
+    - name: Setup Database
+      run: |
+          npx sequelize-cli db:migrate
+        
+    - name: Run tests
+      run: npm test
