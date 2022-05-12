@@ -11,6 +11,7 @@ on:
 
 env: 
   NODE_ENV: test
+  CONFIG_FILE_PATH: ./config/config.json
   DATABASE_URL: mysql://user:pass@localhost:3306/shopping-cart
 
 jobs: 
