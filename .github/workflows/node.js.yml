@@ -7,7 +7,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,28 +14,27 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    services: 
-      mysql: 
+    services:
+      mysql:
         image: mysql:5.7
-        env: 
-          MYSQL_ROOT_PASSWORD: pansani123
-        ports: 
+        env:
+          DB_DATABASE: test_db
+          DB_USER: root
+          DB_PASSWORD: root
+        ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm test
-      run: |
-        npm install
-        npx prettier --write
-        sudo service mysql start
-        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppansani123 < etc/original.sql
-        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppansani123 -e "SHOW DATABASES"
-        #This command adds the proper mysql port to the config file
-        node scripts/ci ${{ job.services.mysql.ports['3306'] }}
-        npm test
+      - uses: actions/checkout@v3
+      - name: Use Node.js CI${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm test
+        run: |
+          npm install
+          npx prettier --write
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{env.DB_DATABASE}}' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
+          npm test
