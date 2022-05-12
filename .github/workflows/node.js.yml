@@ -24,6 +24,7 @@ jobs:
         env:
           MYSQL_USER: user
           MYSQL_PASSWORD: pass
+          MYSQL_ROOT_PASSWORD: pass
           MYSQL_DATABASE: shopping-cart
         ports:
           - 3306:3306
