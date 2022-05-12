@@ -44,6 +44,7 @@ jobs:
     - name: Setup Database
       run: |
           npm i sequelize-cli
+          sequelize init
           npx sequelize-cli db:migrate
         
     - name: Run tests
