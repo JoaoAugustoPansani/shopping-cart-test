@@ -12,7 +12,7 @@ on:
 
 env: 
   NODE_ENV: test
-  DABASE_URL: mysql://root:root@localhost:3306/shopping-cart
+  DABASE_URL: mysql://root:root@localhost:3306
 
 jobs: 
   test:
