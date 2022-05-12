@@ -11,6 +11,7 @@ on:
       - main
 
 env: 
+  NODE_ENV: test
   DABASE_URL: mysql://root:root@localhost:3306/shopping-cart
 
 jobs: 
@@ -21,7 +22,9 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          DATABASE_URL: mysql://root:root@localhost:3306/shopping-cart
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_DB: shopping-cart
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -32,7 +35,7 @@ jobs:
 
     steps: 
     - uses: actions/checkout@v3
-    - name: Use Node ${{matrix.node-version}}
+    - name: Use Node.js CI ${{matrix.node-version}}
       uses: actions/setup-node@v3
       with:
           node-version: ${{ matrix.node-version }}
