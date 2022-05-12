@@ -12,7 +12,7 @@ on:
 
 env: 
   NODE_ENV: test
-  DABASE_URL: mysql://user:pass@localhost:3306
+  DATABASE_URL: mysql://user:pass@localhost:3306
 
 jobs: 
   test:
