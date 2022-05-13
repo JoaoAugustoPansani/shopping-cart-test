@@ -18,7 +18,6 @@ describe("CartController", () => {
           id: expect.any(Number),
           subtotal_in_cents: 0,
           total_in_cents: 0,
-          shipping_in_cents: null,
           user_session_id: "jfka3io*_4",
         });
       });
