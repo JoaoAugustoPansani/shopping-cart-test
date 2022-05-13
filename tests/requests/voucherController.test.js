@@ -5,7 +5,6 @@ describe("VoucherController", () => {
   afterEach(async () => {
     await Voucher.destroy({ where: {} });
   });
-  beforeAll(() => require("../../database/database").sync({ force: false }));
 
   describe("GET /api/vouchers", () => {
     describe("when vouchers are populated", () => {

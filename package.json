@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "server": "nodemon src/server.js",
-    "test": "jest --watchAll",
+    "test": "jest",
+    "test:ci": "jest --silent --forceExit",
     "prettier-format": "prettier --write '**/**/*.js' '.*'"
   },
   "author": "",

@@ -11,7 +11,7 @@ const Cart = sequelize.define(
       autoIncrement: true,
     },
     user_session_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     subtotal_in_cents: {
