@@ -1,6 +1,5 @@
 const request = require("../support/request");
 const Cart = require("../../src/models/Cart/Cart");
-const jest = require("jest");
 
 describe("CartController", () => {
   afterEach(async () => {
