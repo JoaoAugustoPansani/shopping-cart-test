@@ -3,18 +3,18 @@
 
 name: Node CI
 
-on: 
+on:
   push:
   pull_request:
-    branches: 
+    branches:
       - develop
       - main
 
-env: 
+env:
   NODE_ENV: test
   DATABASE_URL: mysql://user:pass@localhost:3306/shopping-cart
 
-jobs: 
+jobs:
   test:
     runs-on: ubuntu-latest
 
@@ -31,20 +31,20 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries 10
 
     strategy:
-      matrix: 
+      matrix:
         node-version: [12.x, 14.x, 16.x]
 
-    steps: 
-    - uses: actions/checkout@v3
-    - name: Use Node.js CI ${{matrix.node-version}}
-      uses: actions/setup-node@v3
-      with:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js CI ${{matrix.node-version}}
+        uses: actions/setup-node@v3
+        with:
           node-version: ${{ matrix.node-version }}
 
-    - name: Setup Database
-      run: |
+      - name: Setup Database
+        run: |
           npm i
           npx sequelize-cli db:migrate
-        
-    - name: Run tests
-      run: npm run test:ci
+
+      - name: Run tests
+        run: npm run test:ci
