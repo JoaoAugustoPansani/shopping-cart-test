@@ -47,4 +47,4 @@ jobs:
           npx sequelize-cli db:migrate
         
     - name: Run tests
-      run: npm test:ci
+      run: npm run test:ci
