@@ -1,30 +1,19 @@
-const Cart = require("../models/Cart/Cart");
+const { generateCartService } = require("../services/cartService");
 
 const generateCartForUser = async (req, res) => {
   const userSessionId = req.body.user_session_id;
+  const result = await generateCartService(userSessionId);
 
-  if (!userSessionId) {
-    res.status(400);
+  if (result.success) {
     res.send({
-      message: "The session id token can't be null.",
+      message: result.message,
+      data: result.data,
     });
   } else {
-    const generatedCart = await Cart.findOrCreate({
-      where: {
-        user_session_id: userSessionId,
-      },
-      defaults: {
-        subtotal_in_cents: 0,
-        total_in_cents: 0,
-      },
-    });
-
+    res.status(400);
     res.send({
-      message: "User cart available!",
-      data: generatedCart,
+      message: result.message,
     });
-
-    return generatedCart;
   }
 };
 

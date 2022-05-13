@@ -18,6 +18,7 @@ describe("CartController", () => {
           id: expect.any(Number),
           subtotal_in_cents: 0,
           total_in_cents: 0,
+          shipping_in_cents: null,
           user_session_id: "jfka3io*_4",
         });
       });
@@ -25,7 +26,7 @@ describe("CartController", () => {
 
     describe("when user_session_id token is null", () => {
       it("should return an error", async () => {
-        const userSessionId = JSON.stringify({ user_session_id: null });
+        const userSessionId = { user_session_id: null };
         const response = await request.post("/api/cart").send(userSessionId);
 
         expect(response.status).toBe(400);
