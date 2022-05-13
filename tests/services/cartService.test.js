@@ -14,11 +14,11 @@ describe("CartSevice", () => {
 
         expect(result.success).toBe(true);
         expect(result.message).toEqual("User cart available!");
-        console.log(typeof result.data[0].id)
+        console.log(typeof result.data[0].id);
         expect(result.data[0]).toEqual({
-            subtotal_in_cents: 0,
-            total_in_cents: 0,
-            id: expect.any(Number),
+          subtotal_in_cents: 0,
+          total_in_cents: 0,
+          id: expect.any(Number),
           user_session_id: userSessionId,
         });
       });
