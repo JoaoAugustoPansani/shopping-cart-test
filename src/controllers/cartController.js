@@ -14,8 +14,8 @@ const generateCartForUser = async (req, res) => {
         user_session_id: userSessionId,
       },
       defaults: {
-        subtotal: 0,
-        total: 0,
+        subtotal_in_cents: 0,
+        total_in_cents: 0,
       },
     });
 

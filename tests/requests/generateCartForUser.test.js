@@ -16,10 +16,9 @@ describe("CartController", () => {
         expect(response.status).toBe(200);
         expect(response.body.message).toEqual("User cart available!");
         expect(response.body.data[0]).toEqual({
-          subtotal: 0,
-          total: 0,
-          items: [],
-          id: "jfka3io*_4",
+          subtotal_in_cents: 0,
+          total_in_cents: 0,
+          user_session_id: "jfka3io*_4",
         });
       });
     });
