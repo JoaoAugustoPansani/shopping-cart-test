@@ -5,7 +5,6 @@ describe("CartController", () => {
   afterEach(async () => {
     await Cart.destroy({ where: {} });
   });
-  beforeAll(() => require("../../database/database").sync({ force: false }));
 
   describe("POST /api/cart", () => {
     describe("when user_session_id token is not null", () => {
