@@ -3,7 +3,7 @@ const Cart = require("../models/Cart/Cart");
 const generateCartForUser = async (req, res) => {
   const userSessionId = req.body.user_session_id;
 
-  if (userSessionId === null) {
+  if (!userSessionId) {
     res.status(400);
     res.send({
       message: "The session id token can't be null.",

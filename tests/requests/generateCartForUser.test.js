@@ -9,12 +9,13 @@ describe("CartController", () => {
   describe("POST /api/cart", () => {
     describe("when user_session_id token is not null", () => {
       it("should generate cart after receiving a user_session_id token", async () => {
-        const userSessionId = JSON.stringify({ user_session_id: "jfka3io*_4" });
+        const userSessionId = { user_session_id: "jfka3io*_4" };
         const response = await request.post("/api/cart").send(userSessionId);
 
         expect(response.status).toBe(200);
         expect(response.body.message).toEqual("User cart available!");
         expect(response.body.data[0]).toEqual({
+          id: expect.any(Number),
           subtotal_in_cents: 0,
           total_in_cents: 0,
           user_session_id: "jfka3io*_4",
