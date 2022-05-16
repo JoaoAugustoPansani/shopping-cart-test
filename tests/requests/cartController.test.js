@@ -25,7 +25,7 @@ describe("CartController", () => {
 
     describe("when user_session_id token is null", () => {
       it("should return an error", async () => {
-        const userSessionId = JSON.stringify({ user_session_id: null });
+        const userSessionId = { user_session_id: null };
         const response = await request.post("/api/cart").send(userSessionId);
 
         expect(response.status).toBe(400);
