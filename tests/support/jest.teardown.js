@@ -1,7 +1,7 @@
 const sequelize = require("../../database/database");
 
-afterAll(() => sequelize.close());
+sequelize.close();
 
 module.exports = {
-    setupFilesAfterEnv: ['<rootDir>/jest.config.js']
-}
+  setupFilesAfterEnv: ["<rootDir>/jest.config.js"],
+};
