@@ -54,7 +54,7 @@ describe("CartItemService", () => {
                 cart_id: cart.id,
                 product_id: product.id,
                 quantity: 3,
-                amount_in_cents: 15
+                amount_in_cents: 45
             });
             const result = await addToCartService(cart.user_session_id, product.id);
 
