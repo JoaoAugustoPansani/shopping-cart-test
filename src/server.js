@@ -13,6 +13,8 @@ app.use("/api/vouchers", require("./routes/voucherRoutes"));
 
 app.use("/api/cart", require("./routes/cartRoutes"));
 
+app.use("/api/cart-item", require("./routes/cartItemRoutes"));
+
 app.use((req, res) => {
   res.status(404);
 });
